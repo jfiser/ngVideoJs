@@ -1,36 +1,42 @@
 
 
-function NGVideo(_wrapperDivId, _metaDataObj){
-	this.flashObj = $('#' + _wrapperDivId);
-	var $wrapperDiv = $('#' + _wrapperDivId);
-	this.metaDataObj = $.parseJSON(JSON.stringify(_metaDataObj));
+function NGVideo(_videoParentDivId, _metaDataObjJson){
+	//this.flashObj = $('#' + _videoParentDivId);
+	var $videoParentDiv = $('#' + _videoParentDivId);
+	this.metaDataObj = $.parseJSON(JSON.stringify(_metaDataObjJson));
 
 	//this.numVideoPlayers 
 	//if(!($.flash.available)){
 	if($.flash.available){		
-		this.flashObj.flash(
-						{
-							swf: './swfs/ngPlayer.swf',
-							width: 640,
-							height: 360,
-							allowScriptAccess: "always", 
-							allowFullScreen: "true", 
-							bgcolor: 0x000000,
-							flashvars: {
-								_player_w: 998,
-								_videoJson: encodeURIComponent(JSON.stringify(_metaDataObj))
-								//_videoJson: JSON.stringify(_metaDataObj)
-							}
-						});
+		addFlashVideo($videoParentDiv, _metaDataObjJson);
 	}
 	else{
-		$('<video/>', {
-		    id: 'vidPlayer',
-		    src: this.metaDataObj.mp4_url,
-		    autoplay:true,
-			}).appendTo($wrapperDiv);
+		addHtmlVideo($videoParentDiv, this.metaDataObj);
 	}
 
+}
+function addHtmlVideo(_$videoParentDiv, _metaDataObj){
+	$('<video/>', {
+	    id: 'vidPlayer',
+	    src: _metaDataObj.mp4_url,
+	    autoplay:true,
+		}).appendTo(_$videoParentDiv);
+}
+function addFlashVideo(_$videoParentDiv, _metaDataObjJson){
+	_$videoParentDiv.flash(
+				{
+					swf: './swfs/ngPlayer.swf',
+					width: 640,
+					height: 360,
+					allowScriptAccess: "always", 
+					allowFullScreen: "true", 
+					bgcolor: 0x000000,
+					flashvars: {
+						_player_w: 998,
+						_videoJson: encodeURIComponent(JSON.stringify(_metaDataObjJson))
+						//_videoJson: JSON.stringify(_metaDataObj)
+					}
+				});
 }
 
 
