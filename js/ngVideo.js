@@ -1,42 +1,63 @@
 
 
 function NGVideo(_videoParentDivId, _metaDataObjJson){
-	//this.flashObj = $('#' + _videoParentDivId);
+	//var $videoElem;
 	var $videoParentDiv = $('#' + _videoParentDivId);
 	this.metaDataObj = $.parseJSON(JSON.stringify(_metaDataObjJson));
 
-	//this.numVideoPlayers 
 	//if(!($.flash.available)){
 	if($.flash.available){		
-		addFlashVideo($videoParentDiv, _metaDataObjJson);
+		this.$videoElem = addFlashVideo($videoParentDiv, _metaDataObjJson);
+		this.htmlOrFlash = "flash";
+		console.log("$videoElem: %o", this.$videoElem);
 	}
 	else{
-		addHtmlVideo($videoParentDiv, this.metaDataObj);
+		this.$videoElem = addHtmlVideo($videoParentDiv, this.metaDataObj);
+		this.htmlOrFlash = "html";
+		console.log("$videoElem: %o", this.$videoElem);
 	}
-
+	//console.log($("body").css("height"));
+}
+NGVideo.prototype.play = function(){
+	if(this.htmlOrFlash === "flash"){
+		document.getElementById("flashVideoPlayer").videoPlay();
+	}
+	else{
+		this.$videoElem.play();
+	}
+}
+NGVideo.prototype.pause = function(){
+	if(this.htmlOrFlash === "flash"){
+		document.getElementById("flashVideoPlayer").videoPause();
+	}
+	else{
+		this.$videoElem.pause();
+	}
 }
 function addHtmlVideo(_$videoParentDiv, _metaDataObj){
-	$('<video/>', {
+	return($('<video/>', {
 	    id: 'vidPlayer',
 	    src: _metaDataObj.mp4_url,
+	    width: '100%',
+	    height: '100%',
 	    autoplay:true,
-		}).appendTo(_$videoParentDiv);
+		}).appendTo(_$videoParentDiv)[0]);
 }
 function addFlashVideo(_$videoParentDiv, _metaDataObjJson){
-	_$videoParentDiv.flash(
+	return(_$videoParentDiv.flash(
 				{
 					swf: './swfs/ngPlayer.swf',
-					width: 640,
-					height: 360,
+					width: '100%',
+					height: '100%',
 					allowScriptAccess: "always", 
 					allowFullScreen: "true", 
 					bgcolor: 0x000000,
+					id: "flashVideoPlayer",  // must have an id so I can use it for JS to SWF communication
 					flashvars: {
 						_player_w: 998,
 						_videoJson: encodeURIComponent(JSON.stringify(_metaDataObjJson))
-						//_videoJson: JSON.stringify(_metaDataObj)
 					}
-				});
+				}));
 }
 
 

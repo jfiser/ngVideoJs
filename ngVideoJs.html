@@ -8,20 +8,29 @@
 <script src="./js/jquery-1.10.2.min.js"></script>
 <script src="./js/ngVideo.js"></script>
 
+<style>
+#myVideo1
+{
+	width: 55%;
+	height: 22%;
+	position: relative;
+}
+</style>
+
 </head>
 
 <body>
 
 <div id="myVideo1">
 	<script>
-		myVideo1 = new NGVideo("myVideo1", 
+		var ngVideo1 = new NGVideo("myVideo1", 
 			{
 			    "byline_override":"",
 			    "id":172,
 			    "meta_description":"",
 			    //"mp4_url":"http://sympleton.com/sympleton/video/MrSmithTrailer.flv",
-			    "mp4_url":"http://sympleton.com//NatGeo/test/experiments/scroll-in-out-video/still-life-tilt.mp4",
-			    //"playlist_url":"http://link.theplatform.com/s/ngs/j6WKWNJZPOVN?mbr=true&feed=all-ng-magazine",
+			    //"mp4_url":"http://sympleton.com//NatGeo/test/experiments/scroll-in-out-video/still-life-tilt.mp4",
+			    "playlist_url":"http://link.theplatform.com/s/ngs/j6WKWNJZPOVN?mbr=true&feed=all-ng-magazine",
 			    "poly_url":"/videos/ngm-david-doubilet/",
 			    "primary_photo":"http://ngm-qa-media.nationalgeographic.com/media/uploads/photos/content/video/2013/09/05/NGM-David-Doubilet.jpg",
 			    "resource_uri":"/api/v1/video/172/",
@@ -31,7 +40,20 @@
 			}
 		);
 	</script>
-<div>
+</div>
+
+<input type="button" value="play" onclick="playVid()">
+<input type="button" value="pause" onclick="pauseVid()">
+<script>
+function playVid(){
+	ngVideo1.play();
+}
+function pauseVid(){
+	ngVideo1.pause();
+}
+</script>
+
+
 
 
 </body>
