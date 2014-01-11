@@ -11,9 +11,29 @@
 <style>
 #myVideo1
 {
-	width: 55%;
-	height: 22%;
-	position: relative;
+	top: 440%;
+	width: 64em;
+	height: 36em;
+	position: absolute;
+	background-color: red;
+}
+#myVideo2
+{
+	top: 60%;
+	width: 64em;
+	height: 36em;
+	position: absolute;
+	background-color: green;
+
+}
+#myVideo3
+{
+	top: 230%;
+	width: 64em;
+	height: 36em;
+	position: absolute;
+	background-color: blue;
+
 }
 </style>
 
@@ -21,36 +41,81 @@
 
 <body>
 
-<div id="myVideo1">
-	<script>
-		var ngVideo1 = new NGVideo("myVideo1", 
-			{
-			    "byline_override":"",
-			    "id":172,
-			    "meta_description":"",
-			    //"mp4_url":"http://sympleton.com/sympleton/video/MrSmithTrailer.flv",
-			    //"mp4_url":"http://sympleton.com//NatGeo/test/experiments/scroll-in-out-video/still-life-tilt.mp4",
-			    "playlist_url":"http://link.theplatform.com/s/ngs/j6WKWNJZPOVN?mbr=true&feed=all-ng-magazine",
-			    "poly_url":"/videos/ngm-david-doubilet/",
-			    "primary_photo":"http://ngm-qa-media.nationalgeographic.com/media/uploads/photos/content/video/2013/09/05/NGM-David-Doubilet.jpg",
-			    "resource_uri":"/api/v1/video/172/",
-			    "slug":"ngm-david-doubilet",
-			    "source":"",
-			    "title":"NGM-David-Doubilet"
-			}
-		);
-	</script>
-</div>
 
 <input type="button" value="play" onclick="playVid()">
 <input type="button" value="pause" onclick="pauseVid()">
+<div id="myVideo1"></div>
+<div id="myVideo2"></div>
+<div id="myVideo3"></div>
+
 <script>
+
+var ngVideo1 = new NGVideo("myVideo1", 
+	{
+	    "byline_override":"",
+	    "id":172,
+	    "meta_description":"",
+	    //"mp4_url":"http://sympleton.com/sympleton/video/MrSmithTrailer.flv",
+	    "mp4_url":"http://sympleton.com//NatGeo/test/experiments/scroll-in-out-video/still-life-tilt.mp4",
+	    //"playlist_url":"http://link.theplatform.com/s/ngs/j6WKWNJZPOVN?mbr=true&feed=all-ng-magazine",
+	    "poly_url":"/videos/ngm-david-doubilet/",
+	    "primary_photo":"http://ngm-qa-media.nationalgeographic.com/media/uploads/photos/content/video/2013/09/05/NGM-David-Doubilet.jpg",
+	    "resource_uri":"/api/v1/video/172/",
+	    "slug":"ngm-david-doubilet",
+	    "source":"",
+	    "title":"NGM-David-Doubilet"
+	}
+);
+ngVideo1.setViewportSense();
+
+
+var ngVideo2 = new NGVideo("myVideo2", 
+	{
+	    "byline_override":"",
+	    "id":172,
+	    "meta_description":"",
+	    "mp4_url":"http://sympleton.com/sympleton/video/MrSmithTrailer.flv",
+	    //"mp4_url":"http://sympleton.com//NatGeo/test/experiments/scroll-in-out-video/still-life-tilt.mp4",
+	    "playlist_url":"http://link.theplatform.com/s/ngs/j6WKWNJZPOVN?mbr=true&feed=all-ng-magazine",
+	    "poly_url":"/videos/ngm-david-doubilet/",
+	    "primary_photo":"http://ngm-qa-media.nationalgeographic.com/media/uploads/photos/content/video/2013/09/05/NGM-David-Doubilet.jpg",
+	    "resource_uri":"/api/v1/video/172/",
+	    "slug":"ngm-david-doubilet",
+	    "source":"",
+	    "title":"NGM-David-Doubilet"
+	}
+);
+ngVideo2.setViewportSense();
+
+var ngVideo3 = new NGVideo("myVideo3", 
+	{
+	    "byline_override":"",
+	    "id":172,
+	    "meta_description":"",
+	    "mp4_url":"http://sympleton.com/sympleton/video/MrSmithTrailer.flv",
+	    //"mp4_url":"http://sympleton.com//NatGeo/test/experiments/scroll-in-out-video/still-life-tilt.mp4",
+	    //"playlist_url":"http://link.theplatform.com/s/ngs/j6WKWNJZPOVN?mbr=true&feed=all-ng-magazine",
+	    "poly_url":"/videos/ngm-david-doubilet/",
+	    "primary_photo":"http://ngm-qa-media.nationalgeographic.com/media/uploads/photos/content/video/2013/09/05/NGM-David-Doubilet.jpg",
+	    "resource_uri":"/api/v1/video/172/",
+	    "slug":"ngm-david-doubilet",
+	    "source":"",
+	    "title":"NGM-David-Doubilet"
+	}
+);
+ngVideo3.setViewportSense();
+
+
+
 function playVid(){
 	ngVideo1.play();
 }
 function pauseVid(){
 	ngVideo1.pause();
+	//ngVideo1.setViewportSense();
 }
+
+
 </script>
 
 
